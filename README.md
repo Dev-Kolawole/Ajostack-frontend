@@ -1,8 +1,30 @@
-# React + Vite
+# AjoStack 🏦
+**DevCareer x Nomba Hackathon 2026 - Finalist Submission**
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A multi-tenant treasury dashboard that digitizes and automates collection, reconciliation, and dunning for traditional Nigerian cooperative societies (Ajo/Esusu) using Nomba’s payment infrastructure and Gemini AI.
 
-Currently, two official plugins are available:
+## 🚀 The Problem
+Traditional informal cooperative systems manage millions of Naira, yet run on outdated, manual processes. Treasurers face severe operational bottlenecks: manual reconciliation of fragmented bank transfers, high default rates due to lack of automated deductions, and inefficient, manual debt recovery (dunning).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 💡 The Solution (AjoStack)
+AjoStack replaces manual tracking with a centralized, automated Treasurer Dashboard:
+* **Automated Card Collections:** Tokenizes member debit cards via **Nomba Checkout API** for frictionless, recurring deductions.
+* **Static Virtual Accounts:** Provisions dedicated Wema bank accounts via **Nomba Virtual Accounts API** for members who prefer manual transfers, allowing instant auto-reconciliation.
+* **Real-Time Ledger:** Uses **Nomba Webhooks** to eliminate manual data entry, updating the cooperative's treasury instantly upon successful transaction events.
+* **AI Contextual Debt Collector:** An automated exception engine powered by **Google Gemini AI** that flags failed charges and instantly generates localized, professional WhatsApp dunning messages to recover funds.
+
+## 🛠️ Technical Architecture
+* **Frontend:** React (Vite) + Tailwind/Vanilla CSS (Live polling architecture)
+* **Backend:** Node.js + Express.js (Decoupled RESTful API)
+* **Security:** Cryptographic Webhook Signature Validation (`crypto` HMAC SHA-256)
+* **Database:** Persistent JSON File-System Ledger
+* **AI Engine:** Google Generative AI (`gemini-2.5-flash`)
+
+## ⚙️ Core Integrations
+1. `POST /api/v1/create-live-checkout` -> Secures token and generates Nomba Checkout links.
+2. `POST /api/v1/create-virtual-account` -> Provisions permanent Nombank MFB accounts.
+3. `POST /api/v1/webhook` -> Validates signatures and parses `transaction.success` payloads.
+4. `POST /api/treasury/remind` -> Feeds failure context to Gemini AI for localized text generation.
+
+---
+*Built by Kolawole Ahmed Olamide (Team Lead) for the DevCareer x Nomba 2026 Hackathon.*
