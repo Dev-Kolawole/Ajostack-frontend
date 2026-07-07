@@ -11,7 +11,7 @@ export default function CheckoutButton() {
 
         try {
             // 2. Ping your live Nomba Express backend
-            const response = await fetch('http://localhost:5000/api/v1/create-live-checkout', {
+            const response = await fetch('https://ajostack-backend.onrender.com/api/v1/create-live-checkout', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

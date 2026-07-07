@@ -14,7 +14,7 @@ function App() {
 
   // 2. DATA FETCHING LOGIC
   const fetchDashboardData = () => {
-    fetch('http://localhost:5000/api/treasury/dashboard')
+    fetch('https://ajostack-backend.onrender.com/api/treasury/dashboard')
       .then(res => res.json())
       .then(setData)
       .catch(console.error);
@@ -33,7 +33,7 @@ function App() {
   const sendReminder = async (memberName, failureReason, amount) => {
     setIsGenerating(true); 
     try {
-      const response = await fetch('http://localhost:5000/api/treasury/remind', {
+      const response = await fetch('https://ajostack-backend.onrender.com/api/treasury/remind', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ memberName, reason: failureReason, amount }),
@@ -58,7 +58,7 @@ function App() {
   const processLivePayment = async () => {
     setIsProcessingPayment(true);
     try {
-      const response = await fetch('http://localhost:5000/api/v1/create-live-checkout', {
+      const response = await fetch('https://ajostack-backend.onrender.com/api/v1/create-live-checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' }
       });
@@ -82,7 +82,7 @@ function App() {
     setIsProvisioning(true);
     setVirtualAccount(null);
     try {
-      const response = await fetch('http://localhost:5000/api/v1/create-virtual-account', {
+      const response = await fetch('https://ajostack-backend.onrender.com/api/v1/create-virtual-account', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -108,7 +108,7 @@ function App() {
   // 🟢 6. SECRET DEMO BUTTON: Simulate End of Month 🟢
   const triggerMonthEnd = async () => {
     try {
-      await fetch('http://localhost:5000/api/treasury/simulate-cron', { method: 'POST' });
+      await fetch('https://ajostack-backend.onrender.com/api/treasury/simulate-cron', { method: 'POST' });
     } catch (error) {
       console.error("Cron failed:", error);
     }
